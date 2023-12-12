@@ -3,7 +3,7 @@
 # accordingly
 
 resource "aws_ecs_task_definition" "own_task_definition" {
-  family                = "zaw-taskdef-tf" # Update accordingly
+  family                = "nasir-taskdef-tf" # Update accordingly
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   execution_role_arn        = var.ex_role_arn
@@ -14,7 +14,7 @@ resource "aws_ecs_task_definition" "own_task_definition" {
     image_url        = "nginx:latest"
     container_name   = "NGINX"
     log_group_region = "us-east-1"
-    log_group_name   = "/ecs/zaw-taskdef-tf" # Update accordingly
+    log_group_name   = "/ecs/nasir-taskdef-tf" # Update accordingly
     log_group_prefix = "ecs"
   })
 }
@@ -22,13 +22,13 @@ resource "aws_ecs_task_definition" "own_task_definition" {
 # Creates an ecs cluster
 
 resource "aws_ecs_cluster" "own_cluster" {
-  name = "zaw-cluster-tf" # Update accordingly
+  name = "nasir-cluster-tf" # Update accordingly
 }
 
 # Creates an ecs service
 
 resource "aws_ecs_service" "own_service" {
-  name             = "zaw-svc-tf" # Update accordingly
+  name             = "nasir-svc-tf" # Update accordingly
   cluster          = aws_ecs_cluster.own_cluster.arn
   task_definition  = aws_ecs_task_definition.own_task_definition.arn
   desired_count    = 1
